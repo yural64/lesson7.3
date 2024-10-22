@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from googletrans import Translator
 
 url = "https://randomword.com/"
 
@@ -29,6 +30,19 @@ def get_english_words():
     except:
         print("Произошла ошибка")
 
+#Создаем функцию перевода
+def word_translator():
+    translator = Translator()
+    russian = translator.translate("english_words", dest="ru")
+    russian_words = russian.text
+    russian_definition = translator.translate("word_definition", dest="ru")
+#    print("russian_words")
+#    print("russian_definition")
+    return {
+        "russian_words": russian_words,
+        "russian_definition": russian_definition
+    }
+
 #Создаём функцию, которая будет делать саму игру
 def word_game():
     print("Добро пожаловать в игру!")
@@ -36,6 +50,10 @@ def word_game():
         word_dict = get_english_words()
         word = word_dict.get("english_words")
         word_definition = word_dict.get("word_definition")
+
+        russ_dict = word_translator()
+        word = russ_dict.get("russian_words")
+        word_definition = russ_dict.get("russian_definition")
 
         print(f"Значение слова - {word_definition}")
         user = input("Что это за слово? ")
