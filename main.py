@@ -23,8 +23,8 @@ def get_english_words():
 
         # Функция возвращает словарь
         return {
-            "english_words",
-            "word_definition"
+            "english_words": english_words,
+            "word_definition": word_definition
         }
     except:
         print("Произошла ошибка")
@@ -38,13 +38,13 @@ def word_game():
         word_definition = word_dict.get("word_definition")
 
         print(f"Значение слова - {word_definition}")
-        user = input("Что это за слово?")
+        user = input("Что это за слово? ")
         if user == word:
             print("Верно!")
         else:
             print(f"Не угадал! Загадано слово {word}")
 
-        play_again = input("Хотите сыграть еще? y/n:")
+        play_again = input("Хотите сыграть еще? y/n: ")
         if play_again != "y":
             print("Игра окончена!")
             break
